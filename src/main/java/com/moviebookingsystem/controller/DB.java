@@ -8,34 +8,27 @@ public class DB {
 
     public static Connection getConnection() {
 
-        Connection con;
-
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // 🔥 Read cloud credentials from environment variables
+            // Read cloud environment variables
             String url = System.getenv("DB_URL");
-            String username = System.getenv("DB_USER");
-            String password = System.getenv("DB_PASS");
+            String user = System.getenv("DB_USER");
+            String pass = System.getenv("DB_PASS");
 
-            // 🔥 Fallback to local database (optional, for development)
-            if (url == null || url.isEmpty()) {
-                url = "jdbc:mysql://localhost/TicketBooking";
-            }
-            if (username == null || username.isEmpty()) {
-                username = "root";
-            }
-            if (password == null || password.isEmpty()) {
-                password = "Vinu@2003";
+            // If env variables are missing → throw clear error
+            if (url == null || user == null || pass == null) {
+                throw new RuntimeException("❌ Database environment variables (DB_URL / DB_USER / DB_PASS) are not set.");
             }
 
-            con = DriverManager.getConnection(url, username, password);
+            // Log for debugging (safe, no passwords)
+            System.out.println("🌐 Connecting to DB: " + url);
+
+            return DriverManager.getConnection(url, user, pass);
 
         } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("❌ Database connection failed: " + e.getMessage(), e);
         }
-
-        return con;
     }
 }
 
