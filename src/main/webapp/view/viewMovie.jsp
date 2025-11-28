@@ -20,7 +20,7 @@
         User user = (User) request.getAttribute("user");
         String role = "USER";
         String userId = 0;
-        String displayName = "Guest";
+        int displayName = "Guest";
         if (user != null) {
             if (user.getRole() != null) role = user.getRole();
             if (user.getUserId() != 0) userId = user.getUserId();
