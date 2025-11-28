@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
             }
         }
 //        System.out.println("Logged out");
-        resp.sendRedirect("index.jsp");
+        resp.sendRedirect("/index.jsp");
     }
 
     @Override
@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
             for (Cookie c : cookies) {
                 if (c.getName().equals("email")) {
                     System.out.println(c.getValue());
-                    req.getRequestDispatcher("viewMovie").forward(req,resp);
+                    req.getRequestDispatcher("/viewMovie").forward(req,resp);
                     return;
                 }
             }
@@ -59,12 +59,12 @@ public class LoginServlet extends HttpServlet {
             uid.setMaxAge(12 * 60 * 60); uname.setMaxAge(12 * 60 * 60); userId.setMaxAge(12 * 60 * 60);
             uid.setPath("/"); uname.setPath("/"); userId.setPath("/");
             resp.addCookie(uid); resp.addCookie(uname); resp.addCookie(userId);
-            req.getRequestDispatcher("viewMovie").forward(req,resp);
+            req.getRequestDispatcher("/viewMovie").forward(req,resp);
         }
         else {
             req.setAttribute("message", "Invalid credential");
             try {
-                req.getRequestDispatcher("index.jsp").include(req,resp);
+                req.getRequestDispatcher("/index.jsp").include(req,resp);
             } catch (ServletException e) {
                 throw new RuntimeException(e);
             }
