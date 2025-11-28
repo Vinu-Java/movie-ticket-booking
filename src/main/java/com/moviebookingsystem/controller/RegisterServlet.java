@@ -22,17 +22,17 @@ public class RegisterServlet extends HttpServlet {
 
         if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
             res.getWriter().println("All fields are required!");
-            req.getRequestDispatcher("view/register.jsp").include(req, res);
+            req.getRequestDispatcher("/view/register.jsp").include(req, res);
             return;
         }
 
         if (UserDAO.addUser(name, email, password)) {
             res.getWriter().println("Account created");
-            req.getRequestDispatcher("index.jsp").include(req, res);
+            req.getRequestDispatcher("/index.jsp").include(req, res);
         }
         else {
             res.getWriter().println("Registration failed. Try again.");
-            req.getRequestDispatcher("view/register.jsp").include(req, res);
+            req.getRequestDispatcher("/view/register.jsp").include(req, res);
         }
     }
 }

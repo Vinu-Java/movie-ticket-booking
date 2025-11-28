@@ -27,13 +27,13 @@ public class HistoryServlet extends HttpServlet {
             }
         }
         if (userId == 0) {
-            resp.sendRedirect("index.jsp");
+            resp.sendRedirect("/index.jsp");
             return;
         }
 
         ArrayList<Booking> bookings = BookingDAO.getBookingsByUser(userId);
         req.setAttribute("bookings", bookings);
-        req.getRequestDispatcher("view/history.jsp").forward(req,resp);
+        req.getRequestDispatcher("/view/history.jsp").forward(req,resp);
     }
 
     @Override

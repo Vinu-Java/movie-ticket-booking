@@ -33,16 +33,16 @@
         <%
             if ("ADMIN".equalsIgnoreCase(role)) {
         %>
-            <a href="view/admin/makeAdmin.jsp"><button class="admin-btn">Make Admin</button></a>
-            <a href="view/admin/newMovie.jsp"><button class="admin-btn">New Movie</button></a>
+            <a href="/view/admin/makeAdmin.jsp"><button class="admin-btn">Make Admin</button></a>
+            <a href="/view/admin/newMovie.jsp"><button class="admin-btn">New Movie</button></a>
         <%
             } else {
         %>
-            <a href="history"><button>Booking History</button></a>
+            <a href="/history"><button>Booking History</button></a>
         <%
             }
         %>
-            <a href="login"><button>Logout</button></a>
+            <a href="/login"><button>Logout</button></a>
         </div>
 
         <h1>Welcome
@@ -73,14 +73,14 @@
                 if ("ADMIN".equalsIgnoreCase(role)) {
         %>
                 <div style="display:flex; gap:10px;">
-                    <a href="admin/refresh?movie-id=<%= movieId %>"><button class="refresh-btn">Refresh</button></a>
-                    <a href="admin/remove?movie-id=<%= movieId %>"><button class="remove-btn">Remove</button></a>
+                    <a href="/admin/refresh?movie-id=<%= movieId %>"><button class="refresh-btn">Refresh</button></a>
+                    <a href="/admin/remove?movie-id=<%= movieId %>"><button class="remove-btn">Remove</button></a>
                 </div>
         <%
                 } else {
                     if (available > 0) {
         %>
-                <a href="bookTicket?movie-id=<%= movieId %>"><button>Book Now</button></a>
+                <a href="/bookTicket?movie-id=<%= movieId %>"><button>Book Now</button></a>
         <%
                     } else {
         %>

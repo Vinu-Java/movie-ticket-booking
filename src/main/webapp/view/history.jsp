@@ -10,7 +10,7 @@
 
 </head>
 
-<body class="history">
+<body class="/history">
 
     <h2>Your Booking History</h2>
     <%
@@ -57,7 +57,7 @@
         }
     %>
     <br>
-    <a href="viewMovie"><button>Back to Home</button></a>
+    <a href="/viewMovie"><button>Back to Home</button></a>
 
 </body>
 </html>

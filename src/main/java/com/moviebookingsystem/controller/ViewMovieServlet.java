@@ -35,7 +35,7 @@ public class ViewMovieServlet extends HttpServlet {
             }
         }
         if (userId == 0) {
-            resp.sendRedirect("index.jsp");
+            resp.sendRedirect("/index.jsp");
             return;
         }
 
@@ -43,6 +43,6 @@ public class ViewMovieServlet extends HttpServlet {
         User user = UserDAO.getUserById(userId);
         req.setAttribute("user", user);
         req.setAttribute("movies", movies);
-        req.getRequestDispatcher("view/viewMovie.jsp").forward(req, resp);
+        req.getRequestDispatcher("/view/viewMovie.jsp").forward(req, resp);
     }
 }

@@ -35,7 +35,7 @@ public class BookTicketServlet extends HttpServlet {
             }
         }
         if (userId == 0) {
-            resp.sendRedirect("index.jsp");
+            resp.sendRedirect("/index.jsp");
             return;
         }
 
@@ -47,6 +47,6 @@ public class BookTicketServlet extends HttpServlet {
         req.setAttribute("movie", movie);
         req.setAttribute("availableSeats", availableSeats);
 
-        req.getRequestDispatcher("view/seatSelection.jsp").forward(req, resp);
+        req.getRequestDispatcher("/view/seatSelection.jsp").forward(req, resp);
     }
 }

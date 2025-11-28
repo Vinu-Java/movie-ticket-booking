@@ -21,7 +21,7 @@
         <p><strong>Total Amount:</strong> ₹${totalAmount}</p>
     </div>
 
-    <a href="viewMovie"><button>Back to Home</button></a>
+    <a href="/viewMovie"><button>Back to Home</button></a>
 </div>
 
 </body>

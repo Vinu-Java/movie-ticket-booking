@@ -27,7 +27,7 @@ public class confirmBookingServlet extends HttpServlet {
 
         if (seats == null || seats.length == 0) {
             req.setAttribute("error", "Please select at least one seat.");
-            req.getRequestDispatcher("bookTicket").forward(req, resp);
+            req.getRequestDispatcher("/bookTicket").forward(req, resp);
             return;
         }
 
@@ -36,7 +36,7 @@ public class confirmBookingServlet extends HttpServlet {
         try {
             if (!SeatDAO.areSeatsAvailable(movieId, selectedSeats)) {
                 req.setAttribute("error", "Some seats were already booked. Please choose again.");
-                req.getRequestDispatcher("view/selectSeats.jsp").forward(req, resp);
+                req.getRequestDispatcher("/view/selectSeats.jsp").forward(req, resp);
                 return;
             }
         } catch (SQLException e) {
@@ -53,7 +53,7 @@ public class confirmBookingServlet extends HttpServlet {
             }
         }
         if (userId == 0) {
-            resp.sendRedirect("index.jsp");
+            resp.sendRedirect("/index.jsp");
             return;
         }
 
@@ -74,10 +74,10 @@ public class confirmBookingServlet extends HttpServlet {
             req.setAttribute("totalAmount", seats.length * movie.getTicketPrice());
             if (!BookingDAO.addBooking(new Booking(userId, movie.getMovieName(), seatStr, LocalDateTime.now())))
                 resp.getWriter().println("Due to some reasons, your 'history' is not stored but your tickets are confirmed");
-            req.getRequestDispatcher("view/success.jsp").forward(req,resp);
+            req.getRequestDispatcher("/view/success.jsp").forward(req,resp);
         } else {
             req.setAttribute("error", "Booking failed due to conflict.");
-            req.getRequestDispatcher("view/seatSelection.jsp").forward(req, resp);
+            req.getRequestDispatcher("/view/seatSelection.jsp").forward(req, resp);
         }
 
     }
