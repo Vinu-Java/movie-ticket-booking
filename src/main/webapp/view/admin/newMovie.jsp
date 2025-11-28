@@ -24,7 +24,7 @@
     <div class="movie-form-box">
         <h2>Add New Movie</h2>
 
-        <form class="/movie-form" action="${pageContext.request.contextPath}/newMovie"
+        <form class="movie-form" action="${pageContext.request.contextPath}/newMovie"
               method="post" enctype="multipart/form-data">
 
             <label>Movie Name:</label>

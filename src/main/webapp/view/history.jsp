@@ -10,7 +10,7 @@
 
 </head>
 
-<body class="/history">
+<body class="history">
 
     <h2>Your Booking History</h2>
     <%
