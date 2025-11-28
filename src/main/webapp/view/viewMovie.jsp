@@ -19,8 +19,8 @@
     <%
         User user = (User) request.getAttribute("user");
         String role = "USER";
-        String userId = 0;
-        int displayName = "Guest";
+        int userId = 0;
+        String displayName = "Guest";
         if (user != null) {
             if (user.getRole() != null) role = user.getRole();
             if (user.getUserId() != 0) userId = user.getUserId();
@@ -49,7 +49,7 @@
 
         <h1>Welcome
             <span class="<%= ("ADMIN".equalsIgnoreCase(role) ? "admin-name" : "user-name") %>">
-                <%= displayName %> <%= userId %>
+                <%= displayName %> <span style="font-size: 26px;">(<%= userId %>)<span>
             </span>
         </h1>
 
