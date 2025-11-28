@@ -11,22 +11,18 @@ public class DB {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Read cloud environment variables
             String url = System.getenv("DB_URL");
             String user = System.getenv("DB_USER");
             String pass = System.getenv("DB_PASS");
 
-            // If env variables are missing → throw clear error
+            // Ensure variables exist
             if (url == null || user == null || pass == null) {
-                throw new RuntimeException("❌ Database environment variables (DB_URL / DB_USER / DB_PASS) are not set.");
+                throw new RuntimeException("❌ Environment variables DB_URL, DB_USER, DB_PASS are missing.");
             }
-
-            // Log for debugging (safe, no passwords)
-            System.out.println("🌐 Connecting to DB: " + url);
 
             return DriverManager.getConnection(url, user, pass);
 
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException("❌ Database connection failed: " + e.getMessage(), e);
         }
     }
