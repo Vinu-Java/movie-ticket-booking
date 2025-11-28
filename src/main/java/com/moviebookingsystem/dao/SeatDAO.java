@@ -37,7 +37,7 @@ public class SeatDAO {
         String sql;
 
         String inSql = seats.stream().map(s -> "?").collect(Collectors.joining(","));
-        sql = "SELECT COUNT(*) AS count FROM seats WHERE movie_id=? AND seat_no IN (" + inSql + ") AND is_booked=1";
+        sql = "SELECT COUNT(*) AS count FROM Seats WHERE movie_id=? AND seat_no IN (" + inSql + ") AND is_booked=1";
 
         PreparedStatement ps = DB.getConnection().prepareStatement(sql);
         ps.setInt(1, movieId);
@@ -76,7 +76,6 @@ public class SeatDAO {
             con.commit(); // All seats booked correctly
             return updated;
         } else {
-            System.out.println("Seats not booked");
             con.rollback(); // Conflict happened
             return 0;
         }

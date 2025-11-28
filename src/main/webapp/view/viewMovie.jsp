@@ -19,9 +19,11 @@
     <%
         User user = (User) request.getAttribute("user");
         String role = "USER";
+        String userId = 0;
         String displayName = "Guest";
         if (user != null) {
             if (user.getRole() != null) role = user.getRole();
+            if (user.getUserId() != 0) userId = user.getUserId();
             if (user.getUserName() != null && !user.getUserName().trim().isEmpty()) displayName = user.getUserName();
         }
         ArrayList<Movie> movies = (ArrayList<Movie>) request.getAttribute("movies");
@@ -47,7 +49,7 @@
 
         <h1>Welcome
             <span class="<%= ("ADMIN".equalsIgnoreCase(role) ? "admin-name" : "user-name") %>">
-                <%= displayName %>
+                <%= displayName %> <%= userId %>
             </span>
         </h1>
 
@@ -73,8 +75,14 @@
                 if ("ADMIN".equalsIgnoreCase(role)) {
         %>
                 <div style="display:flex; gap:10px;">
-                    <a href="/admin/refresh?movie-id=<%= movieId %>"><button class="refresh-btn">Refresh</button></a>
-                    <a href="/admin/remove?movie-id=<%= movieId %>"><button class="remove-btn">Remove</button></a>
+                    <a href="/admin/refresh?movie-id=<%= movieId %>"
+                        onclick="return confirm('Are you sure you want to REFRESH this movie?');">
+                        <button class="refresh-btn">Refresh</button>
+                    </a>
+                    <a href="/admin/remove?movie-id=<%= movieId %>"
+                       onclick="return confirm('Are you sure you want to REMOVE this movie?');">
+                        <button class="remove-btn">Remove</button>
+                    </a>
                 </div>
         <%
                 } else {

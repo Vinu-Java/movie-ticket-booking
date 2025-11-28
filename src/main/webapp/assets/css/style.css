@@ -33,6 +33,10 @@ body {
     color: #EAF1FF;
 }
 
+.register h2 {
+    margin-bottom: 30px;
+}
+
 .register h2, .register button {
     margin-left: 50px;
 }

@@ -9,43 +9,25 @@ import java.sql.ResultSet;
 
 public class UserDAO {
     public static User validation(String email, String password) {
-        String sql = "SELECT user_id, user_name, email, password FROM Users WHERE email = ?";
+        String sql = "SELECT * FROM Users WHERE email=? AND password=?";
+
         try (Connection con = DB.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            // Log DB connection info lightly (don't print credentials)
-            System.out.println("UserDAO.validation: got Connection: " + (con != null));
-
-            // Use email-only lookup for better debugging
             ps.setString(1, email);
-            System.out.println("UserDAO.validation: executing query for email = " + email);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    String dbPassword = rs.getString("password");
-                    System.out.println("UserDAO.validation: user found. dbPassword length = " +
-                            (dbPassword == null ? "null" : dbPassword.length()));
+            ps.setString(2, password);
 
-                    // Compare safely (plain-text comparison assumed)
-                    boolean passMatches = (dbPassword != null && dbPassword.equals(password));
-                    System.out.println("UserDAO.validation: password match? " + passMatches);
-
-                    if (passMatches) {
-                        User u = new User();
-                        u.setUserId(rs.getInt("user_id"));
-                        u.setUserName(rs.getString("user_name"));
-                        u.setEmail(rs.getString("email"));
-                        // do not set password unless you need it
-                        return u;
-                    } else {
-                        // password mismatch
-                        return null;
-                    }
-                } else {
-                    System.out.println("UserDAO.validation: no user row for email = " + email);
-                }
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                User u = new User();
+                u.setUserId(rs.getInt("user_id"));
+                u.setUserName(rs.getString("user_name"));
+                u.setEmail(rs.getString("email"));
+                u.setPassword(rs.getString("password"));
+                return u;
             }
+
         } catch (Exception e) {
-            System.err.println("UserDAO.validation: exception:");
             e.printStackTrace();
         }
         return null;

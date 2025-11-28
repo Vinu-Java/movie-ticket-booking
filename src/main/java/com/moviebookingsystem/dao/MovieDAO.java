@@ -53,11 +53,14 @@ public class MovieDAO {
     }
 
     public static void reduceAvailability(int movie_id, int seatCount) {
-        String query = "{CALL reduce_availability(?,?)}";
-        try (PreparedStatement ps = DB.getConnection().prepareCall(query)) {
-            ps.setInt(1, movie_id);
-            ps.setInt(2, seatCount);
-            ps.execute();
+        String query = "UPDATE Movies SET available_seats = available_seats - ? WHERE movie_id = ?";
+        try (Connection con = DB.getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+
+            ps.setInt(1, seatCount);
+            ps.setInt(2, movie_id);
+
+            ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
