@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
 </head>
 <body>
-<div  class="/register">
+<div  class="register">
     <h2>New Account</h2>
     <form action="${pageContext.request.contextPath}/register" method="POST">
         <table>
