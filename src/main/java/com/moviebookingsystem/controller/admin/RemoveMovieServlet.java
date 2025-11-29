@@ -28,7 +28,7 @@ public class RemoveMovieServlet extends HttpServlet {
         String realPosterPath = null;
         if (posterWebPath != null) {
             realPosterPath = req.getServletContext().getRealPath(posterWebPath);
-            System.out.println("Real poster disk path = " + realPosterPath);
+//            System.out.println("Real poster disk path = " + realPosterPath);
         }
 
         boolean success = MovieDAO.deleteMovie(movieId, realPosterPath);

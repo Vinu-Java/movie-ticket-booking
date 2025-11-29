@@ -35,7 +35,7 @@ public class ViewMovieServlet extends HttpServlet {
             }
         }
         if (userId == 0) {
-            resp.sendRedirect("/index.jsp");
+            resp.sendRedirect(req.getContextPath() + "/index.jsp");
             return;
         }
 

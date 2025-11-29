@@ -18,6 +18,9 @@ public class DB {
             // Ensure variables exist
             if (url == null || user == null || pass == null) {
                 throw new RuntimeException("❌ Environment variables DB_URL, DB_USER, DB_PASS are missing.");
+//                url = "jdbc:mysql://localhost:3306/TicketBooking";
+//                user = "root";
+//                pass = "Vinu@2003";
             }
 
             return DriverManager.getConnection(url, user, pass);

@@ -192,7 +192,7 @@ public class MovieDAO {
     public static String getPosterPath(int movieId) {
         String sql = "SELECT poster FROM Movies WHERE movie_id = ?";
         try (Connection conn = DB.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+            PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, movieId);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {

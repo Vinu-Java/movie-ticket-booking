@@ -21,7 +21,7 @@
         <p><strong>Total Amount:</strong> ₹${totalAmount}</p>
     </div>
 
-    <a href="/viewMovie"><button>Back to Home</button></a>
+    <a href="${pageContext.request.contextPath}/viewMovie"><button>Back to Home</button></a>
 </div>
 
 </body>

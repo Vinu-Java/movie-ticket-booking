@@ -34,7 +34,7 @@
 
     <div class="container">
         <h2>Login</h2>
-        <form action="/login" method="POST">
+        <form action="${pageContext.request.contextPath}/login" method="POST">
             <table>
                 <tr>
                     <td><label>Email: </label></td>

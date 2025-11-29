@@ -8,7 +8,7 @@
 <body>
 <div class="register">
     <h2>New Account</h2>
-    <form action="/register" method="POST">
+    <form action="${pageContext.request.contextPath}/register" method="POST">
         <table>
             <tr>
                 <td><label>User Name: </label></td>

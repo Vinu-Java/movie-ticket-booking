@@ -27,8 +27,7 @@ public class LoginServlet extends HttpServlet {
                 }
             }
         }
-//        System.out.println("Logged out");
-        resp.sendRedirect("/index.jsp");
+        resp.sendRedirect(req.getContextPath() + "/index.jsp");
     }
 
     @Override

@@ -64,7 +64,7 @@
         }
     %>
     <br>
-    <a href="/viewMovie"><button>Back to Home</button></a>
+    <a href="${pageContext.request.contextPath}/viewMovie"><button>Back to Home</button></a>
 
 </body>
 </html>

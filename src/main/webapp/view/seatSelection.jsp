@@ -27,7 +27,7 @@
         <span class="colorful-name"><%= movie.getMovieName() %></span>
     </h2>
 
-    <form action="/confirmBooking" method="POST">
+    <form action="${pageContext.request.contextPath}/confirmBooking" method="POST">
         <input type="hidden" name="movie-id" value="<%= movie.getMovieId() %>">
 
         <div class="seat-grid">
