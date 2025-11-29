@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class BookingDAO {
     public static boolean addBooking(Booking booking) {
-        String sql = "INSERT INTO bookings (user_id, movie_name, seat_no, booked_on) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Bookings (user_id, movie_name, seat_no, booked_on) VALUES (?, ?, ?, ?)";
 
         try (PreparedStatement pst = DB.getConnection().prepareStatement(sql)) {
 
@@ -29,7 +29,7 @@ public class BookingDAO {
 
     public static ArrayList<Booking> getBookingsByUser(int userId) {
         ArrayList<Booking> list = new ArrayList<>();
-        String sql = "SELECT * FROM bookings WHERE user_id = ? ORDER BY booked_on DESC";
+        String sql = "SELECT * FROM Bookings WHERE user_id = ? ORDER BY booked_on DESC";
 
         try (PreparedStatement pst = DB.getConnection().prepareStatement(sql)) {
 

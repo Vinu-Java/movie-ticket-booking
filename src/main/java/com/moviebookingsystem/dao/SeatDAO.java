@@ -59,7 +59,7 @@ public class SeatDAO {
         con.setAutoCommit(false); // start transaction
 
         String inSql = seats.stream().map(s -> "?").collect(Collectors.joining(","));
-        String sql = "UPDATE seats SET is_booked=1, booked_by=? WHERE movie_id=? AND seat_no IN (" + inSql + ") AND is_booked=0";
+        String sql = "UPDATE Seats SET is_booked=1, booked_by=? WHERE movie_id=? AND seat_no IN (" + inSql + ") AND is_booked=0";
 
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, userId);
