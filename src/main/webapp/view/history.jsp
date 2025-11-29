@@ -40,7 +40,10 @@
                 <%
                     if (b.getBookedOn() != null) {
                         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a");
-                        out.print(b.getBookedOn().format(dtf));
+                        String formatted = b.getBookedOn()
+                                .atZone(ZoneId.of("Asia/Kolkata"))
+                                .format(dtf);
+                        out.print(formatted);
                     } else {
                         out.print("-");
                     }
