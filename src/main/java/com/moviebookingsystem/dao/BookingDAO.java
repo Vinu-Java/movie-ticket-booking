@@ -6,6 +6,7 @@ import com.moviebookingsystem.model.Booking;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 
 public class BookingDAO {
@@ -17,7 +18,7 @@ public class BookingDAO {
             pst.setInt(1, booking.getUserId());
             pst.setString(2, booking.getMovieName());
             pst.setString(3, booking.getSeatNo());
-            pst.setTimestamp(4, Timestamp.valueOf(booking.getBookedOn()));
+            pst.setTimestamp(4, Timestamp.from(Instant.now()));
 
             return pst.executeUpdate() > 0;
 
@@ -44,7 +45,7 @@ public class BookingDAO {
                 b.setSeatNo(rs.getString("seat_no"));
                 Timestamp ts = rs.getTimestamp("booked_on");
                 if (ts != null) {
-                    b.setBookedOn(ts.toLocalDateTime());
+                    b.setBookedOn(ts.toInstant());
                 }
 
                 list.add(b);

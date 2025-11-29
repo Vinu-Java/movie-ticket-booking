@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -36,7 +37,7 @@ public class confirmBookingServlet extends HttpServlet {
         try {
             if (!SeatDAO.areSeatsAvailable(movieId, selectedSeats)) {
                 req.setAttribute("error", "Some seats were already booked. Please choose again.");
-                req.getRequestDispatcher("/view/selectSeats.jsp").forward(req, resp);
+                req.getRequestDispatcher("/view/seatSelection.jsp").forward(req, resp);
                 return;
             }
         } catch (SQLException e) {
@@ -72,7 +73,7 @@ public class confirmBookingServlet extends HttpServlet {
             req.setAttribute("movieName", movie.getMovieName());
             req.setAttribute("seats", seatStr);
             req.setAttribute("totalAmount", seats.length * movie.getTicketPrice());
-            if (!BookingDAO.addBooking(new Booking(userId, movie.getMovieName(), seatStr, LocalDateTime.now())))
+            if (!BookingDAO.addBooking(new Booking(userId, movie.getMovieName(), seatStr, Instant.now())))
                 resp.getWriter().println("Due to some reasons, your 'history' is not stored but your tickets are confirmed");
             req.getRequestDispatcher("/view/success.jsp").forward(req,resp);
         } else {

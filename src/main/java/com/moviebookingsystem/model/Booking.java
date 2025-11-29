@@ -1,5 +1,6 @@
 package com.moviebookingsystem.model;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 public class Booking {
@@ -7,11 +8,11 @@ public class Booking {
     int userId;
     String movieName;
     String seatNo;
-    LocalDateTime bookedOn;
+    Instant bookedOn;
 
     public Booking() {}
 
-    public Booking(int userId, String movieName, String seatNo, LocalDateTime bookedOn) {
+    public Booking(int userId, String movieName, String seatNo, Instant bookedOn) {
         this.userId = userId;
         this.movieName = movieName;
         this.seatNo = seatNo;
@@ -50,11 +51,11 @@ public class Booking {
         this.seatNo = seatNo;
     }
 
-    public LocalDateTime getBookedOn() {
+    public Instant getBookedOn() {
         return bookedOn;
     }
 
-    public void setBookedOn(LocalDateTime bookedOn) {
+    public void setBookedOn(Instant bookedOn) {
         this.bookedOn = bookedOn;
     }
 }
